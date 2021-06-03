@@ -547,12 +547,31 @@
 // Если нашли запрещенное слово (spam или sale) то функция возвращает буль true.
 // Если в строке нет запрещенных слов, функция возвращает буль false.
 
-function checkForSpam(message) {
-  let result
-  result = message.toLowerCase().includes('sale') || message.toLowerCase().includes('spam')
-  return result
-}
+// function checkForSpam(message) {
+//   let result
+//   result = message.toLowerCase().includes('sale') || message.toLowerCase().includes('spam')
+//   return result
+// }
 
-const functionResult = checkForSpam('JavaScript weekly newsletter')
-const functionResult = checkForSpam('[SPAM] How to earn fast money?')
-console.log(functionResult)
+// const functionResult = checkForSpam('JavaScript weekly newsletter')
+// const functionResult = checkForSpam('[SPAM] How to earn fast money?')
+// console.log(functionResult)
+
+// Задача 9: Крайние элементы массива
+// Задание
+// Напиши функцию getExtremeElements(array) которая принимает один параметр array - массив элементов произвольной длины.
+// Функция должна возвращать массив из двух элементов - первого и последнего элемента параметра array.
+
+// Тесты
+// Объявлена функция getExtremeElements(array)
+// Вызов getExtremeElements([1, 2, 3, 4, 5]) возвращает [1, 5]
+// Вызов getExtremeElements(["Earth", "Mars", "Venus"]) возвращает ["Earth", "Venus"]
+// Вызов getExtremeElements(["apple", "peach", "pear", "banana"]) возвращает ["apple", "banana"]
+
+// function getExtremeElements(array) {
+//   const extremeElements = [array[0], array[array.length - 1]]
+
+//   return extremeElements
+// }
+// const functionResult = getExtremeElements([1, 2, 3, 4, 5])
+// console.log(functionResult)
