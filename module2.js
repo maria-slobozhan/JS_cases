@@ -617,13 +617,13 @@
 // В функции includes используется for, return, но не метод массива includes
 
 // function includes(array, value) {
-//   let result
+//
 //   for (let item of array) {
-//     if ((result = item === value)) {
-//       break
+//     if ((item === value)) {
+//       return true
 //     }
 //   }
-//   return result
+//   return false
 // }
 
 // const result = includes(['apple', 'plum', 'pear', 'orange'], 'kiwi')
