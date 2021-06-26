@@ -295,3 +295,349 @@
 
 // car1.changePrice(50000)
 // console.log(car1.getPrice())
+
+// Задание 11
+// Выполни рефакторинг класса Car так, чтобы свойство brand было приватным и добавь два метода для публичного интерфейса,
+//     для чтения и изменения этого свойства.
+
+// getBrand() - возвращает значение приватного свойства brand.
+// changeBrand(newBrand) - изменяет значение приватного свойства brand на newBrand.
+
+// class Car {
+//   #brand
+
+//   constructor({ brand, model, price }) {
+//     this.#brand = brand
+//     this.model = model
+//     this.price = price
+//   }
+
+//   getBrand() {
+//     return this.#brand
+//   }
+
+//   changeBrand(newBrand) {
+//     this.#brand = newBrand
+//   }
+// }
+
+// const car1 = new Car({ brand: 'Audi', model: 'Q3', price: 36000 })
+// console.log('car1 :>> ', car1)
+// console.log(car1.getBrand())
+
+// car1.changeBrand('Honda')
+// console.log(car1.getBrand())
+
+// Задача 12. Хранилище 2.0
+// Задание
+// Выполни рефакторинг заменив функцию-конструктор Storage на класс с методами. Сделай так, чтобы свойство items было приватным.
+
+// class Storage {
+//   #items
+//   constructor(items) {
+//     this.#items = items
+//   }
+
+//   getItems() {
+//     return this.#items
+//   }
+
+//   addItem(newItem) {
+//     this.#items.push(newItem)
+//   }
+
+//   removeItem(item) {
+//     const itemIndex = this.#items.indexOf(item)
+//     this.#items.splice(itemIndex, 1)
+//   }
+// }
+
+// const storage = new Storage(['Нанитоиды', 'Пролонгер', 'Антигравитатор'])
+// console.log(storage.getItems()) // ["Нанитоиды", "Пролонгер", "Антигравитатор"]
+// storage.addItem('Дроид')
+// console.log(storage.getItems()) // ["Нанитоиды", "Пролонгер", "Антигравитатор", "Дроид"]
+// storage.removeItem('Пролонгер')
+// console.log(storage.getItems()) // ["Нанитоиды", "Антигравитатор", "Дроид"]
+
+// Задача 13. Конструктор строк 2.0
+// Задание
+// Выполни рефакторинг заменив функцию - конструктор StringBuilder на класс с методами.
+// Сделай так, чтобы свойство value было приватным.
+
+// class StringBuilder {
+//   #value
+//   constructor(baseValue) {
+//     this.#value = baseValue
+//   }
+
+//   getValue() {
+//     return this.#value
+//   }
+
+//   padEnd(str) {
+//     this.#value += str
+//   }
+
+//   padStart(str) {
+//     this.#value = str + this.#value
+//   }
+
+//   padBoth(str) {
+//     this.padStart(str)
+//     this.padEnd(str)
+//   }
+// }
+// const builder = new StringBuilder('.')
+// console.log(builder.getValue()) // '.'
+// builder.padStart('^')
+// console.log(builder.getValue()) // '^.'
+// builder.padEnd('^')
+// console.log(builder.getValue()) // '^.^'
+// builder.padBoth('=')
+// console.log(builder.getValue()) // '=^.^='
+
+// Задание 14
+// Выполни рефакторинг класса Car.Сделай свойства model и price приватными, также как #brand.
+// Стандартизируй публичный интерфейс класса заменив уже объявленные методы на геттеры и сеттеры brand,
+//     model и price для взаимодействия с приватными свойствами.
+
+// class Car {
+//   #model
+//   #price
+//   #brand
+
+//   constructor({ brand, model, price }) {
+//     this.#brand = brand
+//     this.#model = model
+//     this.#price = price
+//   }
+
+//   get brand() {
+//     return this.#brand
+//   }
+
+//   set brand(newBrand) {
+//     this.#brand = newBrand
+//   }
+
+//   get model() {
+//     return this.#model
+//   }
+
+//   set model(newModel) {
+//     this.#model = newModel
+//   }
+
+//   get price() {
+//     return this.#price
+//   }
+
+//   set price(newPrice) {
+//     this.#price = newPrice
+//   }
+// }
+
+// const car1 = new Car({ brand: 'Audi', model: 'Q3', price: 36000 })
+// console.log('car1 :>> ', car1)
+// console.log(car1.brand)
+
+// car1.model = 'Q5'
+// console.log(car1.model)
+
+// Задание 15. Статическое свойство
+// Выполни рефакторинг класса Car.
+// Добавь публичное статическое свойство MAX_PRICE со значением 50000 - максимально допустимая цена автомобиля.
+
+// Добавь сеттеру price проверку передаваемого значения параметра newPrice.Если оно больше чем MAX_PRICE, сеттер ничего не делает,
+//     а если меньше или равно, то перезаписывает цену автомобиля.
+
+// class Car {
+//   static MAX_PRICE = 50000
+//   #price
+
+//   constructor({ price }) {
+//     this.#price = price
+//   }
+
+//   get price() {
+//     return this.#price
+//   }
+
+//   set price(newPrice) {
+//     if (newPrice > Car.MAX_PRICE) {
+//       return
+//     }
+//     this.#price = newPrice
+//   }
+// }
+
+// const audi = new Car({ price: 35000 })
+// console.log(audi.price) // 35000
+
+// audi.price = 49000
+// console.log(audi.price) // 49000
+
+// audi.price = 51000
+// console.log(audi.price) // 49000
+
+// Задание 16
+// Добавь классу Car публичный статический метод checkPrice(price), принимающий цену автомобиля.
+// Метод должен сравнить значения параметра price и приватного статического свойства MAX_PRICE.
+
+// Если цена автомобиля превышает максимальную, метод должен вернуть строку 'Внимание! Цена превышает допустимую.'.
+// В противном случае метод должен вернуть строку 'Всё хорошо, цена в порядке.'.
+
+// class Car {
+//   static #MAX_PRICE = 50000
+//   static checkPrice(price) {
+//     if (price > Car.#MAX_PRICE) {
+//       return 'Внимание! Цена превышает допустимую.'
+//     }
+//     return 'Всё хорошо, цена в порядке.'
+//   }
+//   constructor({ price }) {
+//     this.price = price
+//   }
+// }
+
+// const audi = new Car({ price: 36000 })
+// const bmw = new Car({ price: 64000 })
+
+// console.log(Car.checkPrice(audi.price)) // Всё хорошо, цена в порядке.
+// console.log(Car.checkPrice(bmw.price)) // Внимание! Цена превышает допустимую.
+
+// Задание 17 Наследование extends
+// В приложении нужен администратор с возможностью добавлять почты пользователей в чёрный список.
+
+// Объяви класс Admin, который наследует от класса User.
+// Добавь классу Admin публичное статическое свойство AccessLevel(уровень доступа),
+//     значение которого это объект { BASIC: 'basic', SUPERUSER: 'superuser' }.
+
+// class User {
+//   email
+
+//   constructor(email) {
+//     this.email = email
+//   }
+
+//   get email() {
+//     return this.email
+//   }
+
+//   set email(newEmail) {
+//     this.email = newEmail
+//   }
+// }
+
+// class Admin extends User {
+//   static AccessLevel = {
+//     BASIC: 'basic',
+//     SUPERUSER: 'superuser',
+//   }
+// }
+
+// Задание 18 super()
+// Добавь классу Admin метод constructor, который принимает один параметр - объект настроек с двумя свойствами email и accessLevel.
+// Добавь классу Admin публичное свойство accessLevel, значение которого будет передаваться при вызове конструктора.
+
+// class User {
+//   email
+
+//   constructor(email) {
+//     this.email = email
+//   }
+
+//   get email() {
+//     return this.email
+//   }
+
+//   set email(newEmail) {
+//     this.email = newEmail
+//   }
+// }
+
+// class Admin extends User {
+//   accessLevel
+//   static AccessLevel = {
+//     BASIC: 'basic',
+//     SUPERUSER: 'superuser',
+//   }
+
+//   constructor({ email, accessLevel }) {
+//     super(email)
+//     this.accessLevel = accessLevel
+//   }
+// }
+
+// const mango = new Admin({
+//   email: 'mango@mail.com',
+//   accessLevel: Admin.AccessLevel.SUPERUSER,
+// })
+
+// console.log(mango.email) // mango@mail.com
+// console.log(mango.accessLevel) // superuser
+
+// Задание 19
+// Добавь классу Admin следующие свойства и методы.
+
+// Публичное свойство blacklistedEmails для хранения чёрного списка почтовых адресов пользователей.
+// Значение по умолчанию это пустой массив.
+// Публичный метод blacklist(email) для добавления почты в чёрный список.
+// Метод должен добавлять значение параметра email в массив хранящийся в свойстве blacklistedEmails.
+// Публичный метод isBlacklisted(email) для проверки почты в чёрном списке.
+// Метод должен проверять наличие значения параметра email в массиве хранящемся в свойстве blacklistedEmails и возвращать true или false.
+
+// class User {
+//   email
+
+//   constructor(email) {
+//     this.email = email
+//   }
+
+//   get email() {
+//     return this.email
+//   }
+
+//   set email(newEmail) {
+//     this.email = newEmail
+//   }
+// }
+// class Admin extends User {
+//   // Пиши код ниже этой строки
+
+//   static AccessLevel = {
+//     BASIC: 'basic',
+//     SUPERUSER: 'superuser',
+//   }
+
+//   accessLevel
+//   blacklistedEmails
+
+//   constructor({ email, accessLevel, blacklistedEmails = [] }) {
+//     super(email)
+//     this.accessLevel = accessLevel
+//     this.blacklistedEmails = blacklistedEmails
+//   }
+
+//   blacklist(email) {
+//     this.blacklistedEmails.push(email)
+//   }
+
+//   isBlacklisted(email) {
+//     return this.blacklistedEmails.includes(email)
+//   }
+
+//   // Пиши код выше этой строки
+// }
+
+// const mango = new Admin({
+//   email: 'mango@mail.com',
+//   accessLevel: Admin.AccessLevel.SUPERUSER,
+// })
+
+// console.log(mango.email) // mango@mail.com
+// console.log(mango.accessLevel) // superuser
+// mango.blacklist('poly@mail.com')
+// console.log(mango.blacklistedEmails) // 'poly@mail.com'
+// console.log(mango.isBlacklisted('mango@mail.com')) //  false
+// console.log(mango.isBlacklisted('poly@mail.com')) // true
